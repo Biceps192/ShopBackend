@@ -18,7 +18,8 @@ namespace BackendApp.Data
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Favourite> Favourites { get; set; }
         public DbSet<PublicUser> PublicUsers { get; set; }
-        public DbSet<Subcategories> Subcategories { get; set; }
+        public DbSet<Subcategory> Subcategories { get; set; }
+        public DbSet<Brand> Brands { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -36,10 +37,7 @@ namespace BackendApp.Data
                 .WithMany(x => x.ProductOrders)
                 .HasForeignKey(x => x.OrderId);
 
-/*            modelBuilder.Entity<User>()
-                .HasOne(x => x.PublicUser)
-                .WithMany()
-                .OnDelete(DeleteBehavior.ClientNoAction);*/
+            
         }
     }
 }
