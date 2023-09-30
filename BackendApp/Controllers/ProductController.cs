@@ -2,6 +2,7 @@
 using BackendApp.Data;
 using BackendApp.Dto;
 using BackendApp.Models;
+using BackendApp.SqlRepo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendApp.Controllers
@@ -28,7 +29,7 @@ namespace BackendApp.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ProductReadDto> GetProduct(int id)
+        public ActionResult<ProductReadDto> GetProductById(int id)
         {
             var product = _productRepo.GetProductById(id);
             if (product != null)
@@ -37,6 +38,18 @@ namespace BackendApp.Controllers
 
             }
             return NotFound();
+        }
+
+        [HttpPost]
+        public ActionResult<ProductReadDto> CreateProduct(ProductCreateDto product)
+        {
+            var productModel = _mapper.Map<Product>(product);
+            _productRepo.CreateProduct(productModel);
+            _productRepo.SaveChanges();
+
+            var productReadDto = _mapper.Map<ProductReadDto>(productModel);
+
+            return CreatedAtRoute(nameof(GetProductById), new { Id = productReadDto.Id }, productReadDto);
         }
     }
 }

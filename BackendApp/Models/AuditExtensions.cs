@@ -8,5 +8,11 @@ namespace BackendApp.Models
         public int CreatedBy { get; set; }
         public DateTimeOffset ModifiedAt { get; set; }
         public int? ModifiedBy { get; set; }
+
+        public AuditExtensions()
+        {
+            CreatedAt = DateTimeOffset.Now;
+            ModifiedAt = DateTimeOffset.Now;
+        }
     }
 }

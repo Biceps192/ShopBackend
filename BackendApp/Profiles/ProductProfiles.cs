@@ -9,6 +9,7 @@ namespace BackendApp.Profiles
         public ProductProfiles()
         {
             CreateMap<Product, ProductReadDto>();
+            CreateMap<ProductCreateDto, Product>();
         }
     }
 }

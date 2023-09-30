@@ -12,6 +12,16 @@ namespace BackendApp.SqlRepo
             _context = shopContext;
         }
 
+        public void CreateProduct(Product product)
+        {
+            if (product == null)
+            {
+                throw new ArgumentNullException(nameof(product));
+            }
+
+            _context.Products.Add(product);
+        }
+
         public Product GetProductById(int id)
         {
             return _context.Products.FirstOrDefault(p => p.Id == id);
@@ -20,6 +30,11 @@ namespace BackendApp.SqlRepo
         public IEnumerable<Product> GetProducts()
         {
             return _context.Products.ToList();
+        }
+
+        public bool SaveChanges()
+        {
+            return (_context.SaveChanges() >= 0);
         }
     }
 }
