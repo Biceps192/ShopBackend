@@ -12,6 +12,6 @@ namespace BackendApp.Models
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
         public int Count { get; set; }
-        public ICollection<ProductOrder> ProductOrders { get; set; }
+        public ICollection<ProductBasket> ProductBasket { get; set; }
     }
 }

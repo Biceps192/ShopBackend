@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BackendApp.Dto;
+using BackendApp.Dto.OrderDto;
 using BackendApp.Models;
 
 namespace BackendApp.Profiles

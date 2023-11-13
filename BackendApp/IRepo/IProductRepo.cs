@@ -1,6 +1,6 @@
 ﻿using BackendApp.Models;
 
-namespace BackendApp.Data
+namespace BackendApp.IRepo
 {
     public interface IProductRepo
     {
@@ -8,5 +8,7 @@ namespace BackendApp.Data
         IEnumerable<Product> GetProducts();
         Product GetProductById(int id);
         void CreateProduct(Product product);
+        IEnumerable<Product> GetProductsByCategory(int id);
+
     }
 }

@@ -30,6 +30,23 @@ namespace BackendApp.Data
                 new Subcategory { Id = 11, Name = "LED TV / LCD TV", CategoryId = 6},
                 new Subcategory { Id = 12, Name = "OLED TV" , CategoryId = 6}
                 );
+
+            modelBuilder.Entity<Brand>().HasData(
+                new Brand { Id = 1, Name = "Apple" },
+                new Brand { Id = 2, Name = "LG" },
+                new Brand { Id = 3, Name = "Canon" },
+                new Brand { Id = 4, Name = "Nikon" },
+                new Brand { Id = 5, Name = "Google" },
+                new Brand { Id = 6, Name = "Samsung" },
+                new Brand { Id = 7, Name = "Nvidia" },
+                new Brand { Id = 8, Name = "AMD" },
+                new Brand { Id = 9, Name = "GIGABYTE" },
+                new Brand { Id = 10, Name = "BenQ" },
+                new Brand { Id = 11, Name = "Intel" },
+                new Brand { Id = 12, Name = "Fujifilm" },
+                new Brand { Id = 13, Name = "Philips" },
+                new Brand { Id = 14, Name = "Panasonic" }
+                );
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BackendApp.Data;
+using BackendApp.IRepo;
 using BackendApp.Models;
 
 namespace BackendApp.SqlRepo
@@ -30,6 +31,15 @@ namespace BackendApp.SqlRepo
         public IEnumerable<Product> GetProducts()
         {
             return _context.Products.ToList();
+        }
+
+        public IEnumerable<Product> GetProductsByCategory(int id)
+        {
+            var subcategories = _context.Subcategories.Where(x => x.CategoryId == id);
+
+            var subcategoriesId = subcategories.Select(x => x.Id);
+
+            return _context.Products.Where(x => subcategoriesId.Contains(x.SubcategoryId)).ToList();
         }
 
         public bool SaveChanges()

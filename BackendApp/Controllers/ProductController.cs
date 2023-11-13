@@ -1,29 +1,30 @@
 ﻿using AutoMapper;
-using BackendApp.Data;
-using BackendApp.Dto;
+using BackendApp.Dto.ProductDto;
+using BackendApp.IRepo;
 using BackendApp.Models;
-using BackendApp.SqlRepo;
+using BackendApp.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendApp.Controllers
 {
-    [Route("api/products")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ProductController: ControllerBase
     {
-        private readonly IProductRepo _productRepo;
+        private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-        public ProductController(IProductRepo productRepo, IMapper mapper)
+        public ProductController(IMapper mapper, IProductService productService)
         {
-            _productRepo = productRepo;
             _mapper = mapper;
+            _productService = productService;
         }
 
+        
         [HttpGet]
         public ActionResult<IEnumerable<ProductReadDto>> GetProducts()
         {
-            var products = _productRepo.GetProducts();
+            var products = _productService.GetProducts();
 
             return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(products));
         }
@@ -31,7 +32,7 @@ namespace BackendApp.Controllers
         [HttpGet("{id}")]
         public ActionResult<ProductReadDto> GetProductById(int id)
         {
-            var product = _productRepo.GetProductById(id);
+            var product = _productService.GetProductById(id);
             if (product != null)
             {
                 return Ok(_mapper.Map<ProductReadDto>(product));
@@ -41,15 +42,24 @@ namespace BackendApp.Controllers
         }
 
         [HttpPost]
+        [ActionName(nameof(CreateProduct))]
         public ActionResult<ProductReadDto> CreateProduct(ProductCreateDto product)
         {
             var productModel = _mapper.Map<Product>(product);
-            _productRepo.CreateProduct(productModel);
-            _productRepo.SaveChanges();
+            _productService.CreateProduct(productModel);
 
             var productReadDto = _mapper.Map<ProductReadDto>(productModel);
 
-            return CreatedAtRoute(nameof(GetProductById), new { Id = productReadDto.Id }, productReadDto);
+            return CreatedAtAction(nameof(GetProductById), new { Id = productReadDto.Id }, productReadDto);
+        }
+
+        [HttpGet]
+        [Route("GetByCategory")]
+        public ActionResult<IEnumerable<ProductReadDto>> GetProductsByCategoryId(int id)
+        {
+            var products = _productService.GetProductsByCategory(id);
+
+            return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(products));
         }
     }
 }

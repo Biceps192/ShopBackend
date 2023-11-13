@@ -5,8 +5,8 @@ namespace BackendApp.Models
     public class Order: AuditExtensions
     {
         public DateTime OrderDate { get; set; }
-        public ICollection<ProductOrder> ProductOrders { get; set; }
-        public int PublicUserId { get; set; }
-        public PublicUser PublicUser { get; set; }
+        public int BasketId { get; set; }
+        public Basket Basket { get; set; }
+        public decimal Price { get; set; }
     }
 }

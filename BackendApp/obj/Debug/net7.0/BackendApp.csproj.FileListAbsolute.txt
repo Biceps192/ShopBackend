@@ -80,3 +80,7 @@ C:\Users\admin\Desktop\Проекты\Project\BackendApp\BackendApp\bin\Debug\ne
 C:\Users\admin\Desktop\Проекты\Project\BackendApp\BackendApp\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\admin\Desktop\Проекты\Project\BackendApp\BackendApp\bin\Debug\net7.0\Newtonsoft.Json.dll
 C:\Users\admin\Desktop\Проекты\Project\BackendApp\BackendApp\bin\Debug\net7.0\Newtonsoft.Json.Bson.dll
+C:\Users\admin\Desktop\Проекты\Project\BackendApp\BackendApp\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\admin\Desktop\Проекты\Project\BackendApp\BackendApp\bin\Debug\net7.0\Scrutor.dll
+C:\Users\admin\Desktop\Проекты\Project\BackendApp\BackendApp\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\admin\Desktop\Проекты\Project\BackendApp\BackendApp\bin\Debug\net7.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll

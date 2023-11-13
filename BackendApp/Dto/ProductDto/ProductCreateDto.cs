@@ -1,4 +1,4 @@
-﻿namespace BackendApp.Dto
+﻿namespace BackendApp.Dto.ProductDto
 {
     public class ProductCreateDto
     {

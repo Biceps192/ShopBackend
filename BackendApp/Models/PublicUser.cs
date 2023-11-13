@@ -8,5 +8,7 @@ namespace BackendApp.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
+        public int BasketId { get; set; }
+        public Basket Basket { get; set; }
     }
 }

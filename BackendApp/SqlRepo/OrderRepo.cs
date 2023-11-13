@@ -1,4 +1,5 @@
 ﻿using BackendApp.Data;
+using BackendApp.IRepo;
 using BackendApp.Models;
 
 namespace BackendApp.SqlRepo
@@ -27,9 +28,9 @@ namespace BackendApp.SqlRepo
             throw new NotImplementedException();
         }
 
-        public Order GetOrderByUserId(int id)
+        public Order GetOrderByBasketId(int id)
         {
-            return _context.Orders.FirstOrDefault(x => x.PublicUserId == id);
+            return _context.Orders.FirstOrDefault(x => x.BasketId == id);
         }
 
         public IEnumerable<Order> GetOrders()

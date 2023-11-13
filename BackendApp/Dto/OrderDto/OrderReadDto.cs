@@ -1,11 +1,12 @@
 ﻿using BackendApp.Models;
 
-namespace BackendApp.Dto
+namespace BackendApp.Dto.OrderDto
 {
     public class OrderReadDto
     {
         public int Id { get; set; }
-        public ICollection<ProductOrder> ProductOrders { get; set; }
         public int PublicUserId { get; set; }
+        public int BasketId { get; set; }
+        public decimal Price { get; set; }
     }
 }

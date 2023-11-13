@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BackendApp.Dto;
+using BackendApp.Dto.ProductDto;
 using BackendApp.Models;
 
 namespace BackendApp.Profiles

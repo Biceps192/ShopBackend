@@ -1,13 +1,15 @@
 ﻿using AutoMapper;
-using BackendApp.Data;
 using BackendApp.Dto;
+using BackendApp.Dto.OrderDto;
+using BackendApp.IRepo;
 using BackendApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Server.IIS.Core;
+
 
 namespace BackendApp.Controllers
 {
-    [Route("api/orders")]
+    [Route("api/[controller]")]
+    [ApiController]
     public class OrderController: ControllerBase
     {
         private readonly IOrderRepo _orderRepo;
@@ -19,10 +21,10 @@ namespace BackendApp.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{PublicUserId}", Name = "GetOrderByUserId")]
+        [HttpGet("GetOrderByUserId/{PublicUserId}")]
         public ActionResult<OrderReadDto> GetOrderByUserId(int id)
         {
-            var order = _orderRepo.GetOrderByUserId(id);
+            var order = _orderRepo.GetOrderByBasketId(id);
             if (order != null)
             {
                 return Ok(_mapper.Map<OrderReadDto>(order));

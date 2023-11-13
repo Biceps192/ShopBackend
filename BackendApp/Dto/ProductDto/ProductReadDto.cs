@@ -1,6 +1,6 @@
 ﻿using BackendApp.Models;
 
-namespace BackendApp.Dto
+namespace BackendApp.Dto.ProductDto
 {
     public class ProductReadDto
     {

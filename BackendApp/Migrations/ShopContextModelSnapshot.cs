@@ -48,20 +48,13 @@ namespace BackendApp.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.Property<int>("PublicUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("PublicUserId");
+                    b.HasIndex("PublicUserId")
+                        .IsUnique();
 
                     b.ToTable("Baskets");
                 });
@@ -93,6 +86,120 @@ namespace BackendApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Brands");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5536), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5538), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "Apple"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5540), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5542), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "LG"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5544), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5545), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "Canon"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5547), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5548), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "Nikon"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5550), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5552), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "Google"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5554), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5555), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "Samsung"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5557), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5558), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "Nvidia"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5560), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5562), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "AMD"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5600), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5601), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "GIGABYTE"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5603), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5605), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "BenQ"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5607), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5608), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "Intel"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5610), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5612), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "Fujifilm"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5613), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5615), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "Philips"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5617), new TimeSpan(0, 2, 0, 0, 0)),
+                            CreatedBy = 0,
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5618), new TimeSpan(0, 2, 0, 0, 0)),
+                            Name = "Panasonic"
+                        });
                 });
 
             modelBuilder.Entity("BackendApp.Models.Category", b =>
@@ -128,49 +235,49 @@ namespace BackendApp.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(808), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5273), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(859), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5329), new TimeSpan(0, 2, 0, 0, 0)),
                             NameOfCategory = "Laptops, Tablets & PCs"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(863), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5333), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(864), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5335), new TimeSpan(0, 2, 0, 0, 0)),
                             NameOfCategory = "Computer & Office"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(867), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5337), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(868), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5338), new TimeSpan(0, 2, 0, 0, 0)),
                             NameOfCategory = "Hardware & Components"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(870), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5340), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(872), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5342), new TimeSpan(0, 2, 0, 0, 0)),
                             NameOfCategory = "Smartphones, Radio & GPS"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(916), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5343), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(918), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5345), new TimeSpan(0, 2, 0, 0, 0)),
                             NameOfCategory = "Photo / Video"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(921), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5347), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(922), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5348), new TimeSpan(0, 2, 0, 0, 0)),
                             NameOfCategory = "TV / HiFi / Video"
                         });
                 });
@@ -221,6 +328,9 @@ namespace BackendApp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
+
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
 
@@ -236,12 +346,12 @@ namespace BackendApp.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("PublicUserId")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PublicUserId");
+                    b.HasIndex("BasketId");
 
                     b.ToTable("Orders");
                 });
@@ -295,19 +405,22 @@ namespace BackendApp.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("BackendApp.Models.ProductOrder", b =>
+            modelBuilder.Entity("BackendApp.Models.ProductBasket", b =>
                 {
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int>("BasketId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductId", "OrderId");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
-                    b.HasIndex("OrderId");
+                    b.HasKey("ProductId", "BasketId");
 
-                    b.ToTable("ProductOrders");
+                    b.HasIndex("BasketId");
+
+                    b.ToTable("ProductBasket");
                 });
 
             modelBuilder.Entity("BackendApp.Models.PublicUser", b =>
@@ -317,6 +430,9 @@ namespace BackendApp.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BasketId")
+                        .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("CreatedAt")
                         .HasColumnType("datetimeoffset");
@@ -392,108 +508,108 @@ namespace BackendApp.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1037), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5475), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1041), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5479), new TimeSpan(0, 2, 0, 0, 0)),
                             Name = "Laptops / Notebooks"
                         },
                         new
                         {
                             Id = 2,
                             CategoryId = 1,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1044), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5481), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1045), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5483), new TimeSpan(0, 2, 0, 0, 0)),
                             Name = "Apple MacBook"
                         },
                         new
                         {
                             Id = 3,
                             CategoryId = 2,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1047), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5485), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1049), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5487), new TimeSpan(0, 2, 0, 0, 0)),
                             Name = "Monitors"
                         },
                         new
                         {
                             Id = 4,
                             CategoryId = 2,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1051), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5489), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1052), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5490), new TimeSpan(0, 2, 0, 0, 0)),
                             Name = "All-in-One Printers"
                         },
                         new
                         {
                             Id = 5,
                             CategoryId = 3,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1054), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5492), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1056), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5493), new TimeSpan(0, 2, 0, 0, 0)),
                             Name = "Processors (CPUs)"
                         },
                         new
                         {
                             Id = 6,
                             CategoryId = 3,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1058), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5495), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1060), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5497), new TimeSpan(0, 2, 0, 0, 0)),
                             Name = "AMD Graphics cards"
                         },
                         new
                         {
                             Id = 7,
                             CategoryId = 4,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1062), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5499), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1063), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5500), new TimeSpan(0, 2, 0, 0, 0)),
                             Name = "Smartphones & Cell Phones"
                         },
                         new
                         {
                             Id = 8,
                             CategoryId = 4,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1065), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5502), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1067), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5504), new TimeSpan(0, 2, 0, 0, 0)),
                             Name = "Apple iPhones"
                         },
                         new
                         {
                             Id = 9,
                             CategoryId = 5,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1069), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5506), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1070), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5507), new TimeSpan(0, 2, 0, 0, 0)),
                             Name = "Digital Cameras"
                         },
                         new
                         {
                             Id = 10,
                             CategoryId = 5,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1073), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5509), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1075), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5510), new TimeSpan(0, 2, 0, 0, 0)),
                             Name = "Instant Cameras"
                         },
                         new
                         {
                             Id = 11,
                             CategoryId = 6,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1077), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5512), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1078), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5514), new TimeSpan(0, 2, 0, 0, 0)),
                             Name = "LED TV / LCD TV"
                         },
                         new
                         {
                             Id = 12,
                             CategoryId = 6,
-                            CreatedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1081), new TimeSpan(0, 3, 0, 0, 0)),
+                            CreatedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5516), new TimeSpan(0, 2, 0, 0, 0)),
                             CreatedBy = 0,
-                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 9, 30, 13, 2, 31, 502, DateTimeKind.Unspecified).AddTicks(1082), new TimeSpan(0, 3, 0, 0, 0)),
+                            ModifiedAt = new DateTimeOffset(new DateTime(2023, 11, 6, 13, 52, 30, 800, DateTimeKind.Unspecified).AddTicks(5517), new TimeSpan(0, 2, 0, 0, 0)),
                             Name = "OLED TV"
                         });
                 });
@@ -512,23 +628,28 @@ namespace BackendApp.Migrations
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTimeOffset>("ModifiedAt")
                         .HasColumnType("datetimeoffset");
 
                     b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
 
-                    b.Property<string>("Password")
+                    b.Property<byte[]>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
-                    b.Property<int>("PubclicUserId")
-                        .HasColumnType("int");
+                    b.Property<byte[]>("PasswordSalt")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<int>("PublicUserId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -541,19 +662,11 @@ namespace BackendApp.Migrations
 
             modelBuilder.Entity("BackendApp.Models.Basket", b =>
                 {
-                    b.HasOne("BackendApp.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("BackendApp.Models.PublicUser", "PublicUser")
-                        .WithMany()
-                        .HasForeignKey("PublicUserId")
+                        .WithOne("Basket")
+                        .HasForeignKey("BackendApp.Models.Basket", "PublicUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Product");
 
                     b.Navigation("PublicUser");
                 });
@@ -579,13 +692,13 @@ namespace BackendApp.Migrations
 
             modelBuilder.Entity("BackendApp.Models.Order", b =>
                 {
-                    b.HasOne("BackendApp.Models.PublicUser", "PublicUser")
+                    b.HasOne("BackendApp.Models.Basket", "Basket")
                         .WithMany()
-                        .HasForeignKey("PublicUserId")
+                        .HasForeignKey("BasketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("PublicUser");
+                    b.Navigation("Basket");
                 });
 
             modelBuilder.Entity("BackendApp.Models.Product", b =>
@@ -607,21 +720,21 @@ namespace BackendApp.Migrations
                     b.Navigation("Subcategory");
                 });
 
-            modelBuilder.Entity("BackendApp.Models.ProductOrder", b =>
+            modelBuilder.Entity("BackendApp.Models.ProductBasket", b =>
                 {
-                    b.HasOne("BackendApp.Models.Order", "Order")
-                        .WithMany("ProductOrders")
-                        .HasForeignKey("OrderId")
+                    b.HasOne("BackendApp.Models.Basket", "Basket")
+                        .WithMany("ProductBasket")
+                        .HasForeignKey("BasketId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("BackendApp.Models.Product", "Product")
-                        .WithMany("ProductOrders")
+                        .WithMany("ProductBasket")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Order");
+                    b.Navigation("Basket");
 
                     b.Navigation("Product");
                 });
@@ -648,14 +761,20 @@ namespace BackendApp.Migrations
                     b.Navigation("PublicUser");
                 });
 
-            modelBuilder.Entity("BackendApp.Models.Order", b =>
+            modelBuilder.Entity("BackendApp.Models.Basket", b =>
                 {
-                    b.Navigation("ProductOrders");
+                    b.Navigation("ProductBasket");
                 });
 
             modelBuilder.Entity("BackendApp.Models.Product", b =>
                 {
-                    b.Navigation("ProductOrders");
+                    b.Navigation("ProductBasket");
+                });
+
+            modelBuilder.Entity("BackendApp.Models.PublicUser", b =>
+                {
+                    b.Navigation("Basket")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
