@@ -1,0 +1,21 @@
+<div class="formas">
+    <h2>Registration</h2>
+    <form (ngSubmit) = "onSubmit()">
+        <div>
+            <label for = "username">Username:</label>
+            <input type="text" id="username" name="username" [(ngModel)]="model.username" required>
+        </div>
+        <br>
+        <div>
+            <label for = "email">Email:</label>
+            <input type="email" id="email" name="email" [(ngModel)]="model.email" required>
+        </div>
+        <br>
+        <div>
+            <label for = "password">Password:</label>
+            <input type="password" id="password" name="password" [(ngModel)]="model.password" required>
+        </div>
+        <br>
+        <button type="submit">Save</button>
+    </form>
+</div>

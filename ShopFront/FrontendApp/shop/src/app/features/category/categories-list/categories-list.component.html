@@ -1,0 +1,22 @@
+<body>
+  <div>
+    <h1>Categories</h1>
+  </div>
+  <div class="rows">
+    <div *ngFor="let category of model">
+      <div class="col mb-8">
+        <div class="card">
+          <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top img" alt="Fissure in Sandstone"/>
+          <div class="card-body">
+            <h5 class="card-title">{{category.nameOfCategory}}</h5>
+            <p class="card-text">{{category.id}}</p>
+            <a (click)="selectCategory(category.id)" routerLink="/categories/{{category.id}}" class="btn btn-primary">Let's go</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+

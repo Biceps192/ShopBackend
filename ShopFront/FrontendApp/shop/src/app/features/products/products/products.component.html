@@ -1,0 +1,19 @@
+<app-carousel></app-carousel>
+<div>
+    <h1>Items</h1>
+</div>
+
+<div class="rows">
+    <div *ngFor="let item of products">
+        <div class="product-card">
+            <img src="url/to/product-image.jpg" alt="Product Image" class="product-image">
+                <div class="product-details">
+                    <h3 class="product-title">{{item.name}}</h3>
+                    <h5 class="product-description">{{item.description}}</h5>
+                    <p class="product-price">{{item.price}}$</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>       
+        </div>
+    </div>
+</div>
+<ng-container *ngComponentOutlet="selectedComponent"></ng-container>
