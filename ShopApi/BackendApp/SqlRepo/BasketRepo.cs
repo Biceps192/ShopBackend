@@ -31,8 +31,7 @@ namespace BackendApp.SqlRepo
 
             if (basketRepo != null)
             {
-                throw new ArgumentException($"User already has {nameof(Basket)}");
-                          
+                throw new ArgumentException($"User already has {nameof(Basket)}");          
             }
             var newBasket = new Basket
             {

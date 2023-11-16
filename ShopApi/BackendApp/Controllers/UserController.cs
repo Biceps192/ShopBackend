@@ -53,8 +53,8 @@ namespace BackendApp.Controllers
         }
 
         [HttpGet]
-        [Route("GetByEmail")]
-        public ActionResult<PublicUserReadDto> GetPublicUserByEmail(string email)
+        [Route("CheckPublicUser")]
+        public ActionResult<PublicUserReadDto> CheckPublicUser(string email)
         {
             var publicUser = _userService.GetPublicUserByEmail(email);
 

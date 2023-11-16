@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { BasketRequsetModel } from '../models/basket-request.model';
 import { CreateBasketRequest } from '../models/create-basket.model';
 
@@ -8,8 +8,7 @@ import { CreateBasketRequest } from '../models/create-basket.model';
   providedIn: 'root'
 })
 export class BasketService {
-
-  model: BasketRequsetModel[] = [];
+  private basketStatusSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   
   constructor(private http: HttpClient) { 
   }
@@ -21,4 +20,13 @@ export class BasketService {
   createBasket(model: CreateBasketRequest): Observable<void>{
     return this.http.post<void>('https://localhost:7093/api/Basket/CreateBasket', model);
   }
+
+  getBasketStatus(): Observable<boolean>{
+    return this.basketStatusSubject.asObservable();
+  }
+
+  setBasketStatus(status: boolean): void{
+    this.basketStatusSubject.next(status);
+  }
+
 }

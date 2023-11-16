@@ -4,12 +4,14 @@ import { HomeComponent } from './core/components/home/home.component';
 import { CategoriesListComponent } from './features/category/categories-list/categories-list.component';
 import { RegistrationComponent } from './features/registration/registration/registration.component';
 import { ProductsComponent } from './features/products/products/products.component';
+import { BasketComponent } from './features/basket/basket/basket.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'categories', component: CategoriesListComponent},
   {path: 'registration', component: RegistrationComponent},
-  {path: 'categories/:id', component: ProductsComponent}
+  {path: 'categories/:id', component: ProductsComponent},
+  {path: 'basket', component: BasketComponent}
 ];
 
 @NgModule({
