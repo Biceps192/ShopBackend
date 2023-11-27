@@ -61,5 +61,33 @@ namespace BackendApp.Controllers
 
             return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(products));
         }
+
+        [HttpGet]
+        [Route("GetAllProductsByBasketId")]
+        public ActionResult<IEnumerable<ProductByBasketIdDto>> GetAllProductsByBasketId(int basketId)
+        {
+            var products = _productService.GetAllProductsByBasketId(basketId);
+
+            return Ok(products);
+        }
+
+        [HttpGet]
+        [Route("GetProductsByIds")]
+        public ActionResult<IEnumerable<Product>> GetProductsByIds(List<int> productIds)
+        {
+            if (productIds == null)
+            {
+                return BadRequest("Sorry, ur bad");
+            }
+
+            var products = _productService.GetProductsByIds(productIds);
+
+            if (products == null)
+            {
+                return NotFound("Sorry, not found");
+            }
+
+            return Ok(products);
+        }
     }
 }

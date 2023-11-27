@@ -5,13 +5,15 @@ import { CategoriesListComponent } from './features/category/categories-list/cat
 import { RegistrationComponent } from './features/registration/registration/registration.component';
 import { ProductsComponent } from './features/products/products/products.component';
 import { BasketComponent } from './features/basket/basket/basket.component';
+import { OrderComponent } from './features/order/order/order.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'categories', component: CategoriesListComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'categories/:id', component: ProductsComponent},
-  {path: 'basket', component: BasketComponent}
+  {path: 'basket', component: BasketComponent},
+  {path: 'order', component: OrderComponent}
 ];
 
 @NgModule({

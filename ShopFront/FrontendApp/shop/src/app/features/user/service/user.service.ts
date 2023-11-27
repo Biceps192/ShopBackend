@@ -21,6 +21,7 @@ export class UserService {
 
   saveUserData(userData: any): void{
     localStorage.setItem(this.userKey, JSON.stringify(userData));
+    console.log('Data saved: ', userData);
   }  
 
   getUserData(): any{

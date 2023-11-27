@@ -6,9 +6,8 @@ namespace BackendApp.IRepo
     {
         bool SaveChanges();
         IEnumerable<Order> GetOrders();
-        Order GetOrderByBasketId(int id);
-        void CreateOrder(Order order);
+        Order GetOrderByBasketId(int basketId);
+        void CreateOrderByBasketId(int basketId);
         void UpdateOrder(Order order);
-        void DeleteOrder(Order order);
     }
 }

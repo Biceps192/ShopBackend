@@ -45,7 +45,15 @@ namespace BackendApp.Data
                 new Brand { Id = 11, Name = "Intel" },
                 new Brand { Id = 12, Name = "Fujifilm" },
                 new Brand { Id = 13, Name = "Philips" },
-                new Brand { Id = 14, Name = "Panasonic" }
+                new Brand { Id = 14, Name = "Lenovo" },
+                new Brand { Id = 15, Name = "Logitech" },
+                new Brand { Id = 16, Name = "Kingston" },
+                new Brand { Id = 17, Name = "Energizer" },
+                new Brand { Id = 18, Name = "Razer" },
+                new Brand { Id = 19, Name = "be quiet!" },
+                new Brand { Id = 20, Name = "Xiaomi" },
+                new Brand { Id = 21, Name = "Razer" },
+                new Brand { Id = 22, Name = "Optoma" }
                 );
         }
     }

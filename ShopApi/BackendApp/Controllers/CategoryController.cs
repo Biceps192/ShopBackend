@@ -38,6 +38,7 @@ namespace BackendApp.Controllers
         }
 
         [HttpPost]
+        [Route("CreateSubcategory")]
         public ActionResult<SubcategoryReadDto> CreateSubcategory(SubcategoryCreateDto subcategory)
         {
             var subcategoryModel = _mapper.Map<Subcategory>(subcategory);

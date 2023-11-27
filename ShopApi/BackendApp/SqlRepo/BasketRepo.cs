@@ -1,4 +1,5 @@
 ﻿using BackendApp.Data;
+using BackendApp.Dto.BasketDto;
 using BackendApp.IRepo;
 using BackendApp.Models;
 
@@ -13,21 +14,52 @@ namespace BackendApp.SqlRepo
             _context = context;
         }
 
-        public void AddItemToBasket(int productId, int basketId)
+        public void AddItemToBasket(ProductBasket productBasketDto)
         {
-            var productBasket = new ProductBasket 
-            { 
-                ProductId = productId, 
-                BasketId = basketId 
-            };
+            var productBasket = new ProductBasket();
 
-            _context.ProductBasket.Add(productBasket);
+            var existingProductInBasket = _context.ProductBasket
+                .FirstOrDefault(x => x.BasketId == productBasketDto.BasketId && 
+                x.ProductId == productBasketDto.ProductId);
+
+            if (existingProductInBasket != null)
+            {
+                existingProductInBasket.Quantity++;
+                productBasket = existingProductInBasket;
+            }
+            else
+            {
+                var newProductBasket = new ProductBasket
+                {
+                    ProductId = productBasketDto.ProductId,
+                    BasketId = productBasketDto.BasketId,
+                    Quantity = 1
+                };
+
+                productBasket = newProductBasket;
+
+                _context.ProductBasket.Add(newProductBasket);
+            }
+
             _context.SaveChanges();
-        }
 
-        public void CreateBasket(int publicUserId)
+            var basket = _context.Baskets.FirstOrDefault(x => x.Id == productBasket.BasketId);
+            if (basket != null)
+            {
+                decimal newPrice = _context.ProductBasket
+                    .Where(x => x.BasketId == productBasket.BasketId)
+                    .Select(x => x.Product.Price * x.Quantity)
+                    .Sum();
+
+                basket.Price = newPrice;
+                
+                _context.SaveChanges();
+            }
+        }
+ 
+        public void CreateBasket(Basket basket)
         {
-            var basketRepo = _context.Baskets.FirstOrDefault(x => x.PublicUserId == publicUserId);
+            var basketRepo = _context.Baskets.FirstOrDefault(x => x.PublicUserId == basket.PublicUserId);
 
             if (basketRepo != null)
             {
@@ -35,11 +67,13 @@ namespace BackendApp.SqlRepo
             }
             var newBasket = new Basket
             {
-                PublicUserId = publicUserId
+                PublicUserId = basket.PublicUserId
             };
 
             _context.Baskets.Add(newBasket);
             _context.SaveChanges();
+
+            basket.Id = newBasket.Id;
         }
 
         public Basket GetBasketByPublicUserId(int id)
@@ -52,9 +86,9 @@ namespace BackendApp.SqlRepo
             return (_context.SaveChanges() >= 0);
         }
 
-        public void UpdateBasket(Basket basket)
+        public void UpdatePrice(Basket basket)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BackendApp.Data;
+using BackendApp.Dto.ProductDto;
 using BackendApp.IRepo;
 using BackendApp.Models;
 
@@ -45,6 +46,26 @@ namespace BackendApp.SqlRepo
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public IEnumerable<ProductByBasketIdDto> GetProductsByBasketId(int basketId)
+        {
+            var productBasket = _context.ProductBasket
+                .Where(x => x.BasketId == basketId)
+                .Select(x => new ProductByBasketIdDto
+                {
+                    ProductId = x.ProductId,
+                    Price = x.Product.Price,
+                    Name = x.Product.Name
+                })
+                .ToList();
+
+            return productBasket;
+        }
+
+        public IEnumerable<Product> GetProductsByIds(List<int> productIds)
+        {
+            return _context.Products.Where(x => productIds.Contains(x.Id)).ToList();
         }
     }
 }

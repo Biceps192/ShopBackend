@@ -9,8 +9,10 @@ namespace BackendApp.Profiles
         public BasketProfile()
         {
             CreateMap<Basket, BasketReadDto>();
-            CreateMap<AddProductToBasketDto, Basket>();
+            CreateMap<BasketCreateDto, Basket>();
+            CreateMap<AddProductToBasketDto, ProductBasket>();
             CreateMap<BasketUpdateDto, Basket>();
+            CreateMap<ProductBasket, ProductBasketReadDto>();
         }
     }
 }

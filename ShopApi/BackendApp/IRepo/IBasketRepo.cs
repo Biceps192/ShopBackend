@@ -1,4 +1,5 @@
-﻿using BackendApp.Models;
+﻿using BackendApp.Dto.BasketDto;
+using BackendApp.Models;
 
 namespace BackendApp.IRepo
 {
@@ -6,8 +7,8 @@ namespace BackendApp.IRepo
     {
         bool SaveChanges();
         Basket GetBasketByPublicUserId(int id);
-        void CreateBasket(int publicUserId);
-        void UpdateBasket(Basket basket);
-        void AddItemToBasket(int productId, int basketId);
+        void CreateBasket(Basket basket);
+        void AddItemToBasket(ProductBasket productBasket);
+        void UpdatePrice(Basket basket);
     }
 }

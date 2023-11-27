@@ -1,4 +1,5 @@
 ﻿using BackendApp.Data;
+using BackendApp.Dto.OrderDto;
 using BackendApp.IRepo;
 using BackendApp.Models;
 
@@ -13,14 +14,23 @@ namespace BackendApp.SqlRepo
             _context = shopContext;
         }
 
-        public void CreateOrder(Order order)
+        public void CreateOrderByBasketId(int basketId)
         {
-            if (order == null)
-            {
-                throw new ArgumentNullException(nameof(order));
-            }
+            var basket = _context.Baskets.FirstOrDefault(x => x.Id == basketId);
 
-            _context.Orders.Add(order);
+            if (basket != null)
+            {
+                var newOrder = new Order
+                {
+                    BasketId = basket.Id,
+                    Price = basket.Price,
+                    OrderDate = DateTime.UtcNow
+                };
+
+
+                _context.Add(newOrder);
+                _context.SaveChanges();
+            }
         }
 
         public void DeleteOrder(Order order)

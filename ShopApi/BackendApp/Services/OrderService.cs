@@ -7,9 +7,8 @@ namespace BackendApp.Services
     {
         Order GetOrderByBasketId(int id);
         IEnumerable<Order> GetOrders();
-        void CreateOrder(Order order);
         void UpdateOrder(Order order);
-        void DeleteOrder(Order order);
+        void CreateOrderByBasketId(int basketId);
     }
 
     public class OrderService : IOrderService
@@ -21,14 +20,9 @@ namespace BackendApp.Services
             _orderRepo = orderRepo;
         }
 
-        public void CreateOrder(Order order)
+        public void CreateOrderByBasketId(int basketId)
         {
-            _orderRepo.CreateOrder(order);
-        }
-
-        public void DeleteOrder(Order order)
-        {
-            _orderRepo.DeleteOrder(order);
+            _orderRepo.CreateOrderByBasketId(basketId);
         }
 
         public Order GetOrderByBasketId(int id)

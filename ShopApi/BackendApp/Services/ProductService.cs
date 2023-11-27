@@ -1,5 +1,7 @@
-﻿using BackendApp.IRepo;
+﻿using BackendApp.Dto.ProductDto;
+using BackendApp.IRepo;
 using BackendApp.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BackendApp.Services
 {
@@ -10,6 +12,8 @@ namespace BackendApp.Services
         IEnumerable<Product> GetProducts();
         void CreateProduct(Product product);
         IEnumerable<Product> GetProductsByCategory(int id);
+        IEnumerable<ProductByBasketIdDto> GetAllProductsByBasketId(int basketId);
+        IEnumerable<Product> GetProductsByIds(List<int> id);
     }
 
     public class ProductService : IProductService
@@ -45,6 +49,16 @@ namespace BackendApp.Services
         public bool SaveChanges()
         {
             return _productRepo != null;
+        }
+
+        public IEnumerable<ProductByBasketIdDto> GetAllProductsByBasketId(int basketId) 
+        {
+            return _productRepo.GetProductsByBasketId(basketId);
+        }
+
+        public IEnumerable<Product> GetProductsByIds(List<int> id)
+        {
+            return _productRepo.GetProductsByIds(id);
         }
     }
 }

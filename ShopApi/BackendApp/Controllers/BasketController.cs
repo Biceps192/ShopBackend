@@ -32,45 +32,25 @@ namespace BackendApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult<BasketReadDto> AddProductToBasket([FromBody] AddProductToBasketDto dto)
+        [Route("AddItemToBasket")]
+        public ActionResult<ProductBasketReadDto> AddProductToBasket(AddProductToBasketDto productBasket)
         {
-            var basketModel = _mapper.Map<Basket>(dto);
-            _basketService.AddProductToBasket(dto.ProductId, dto.BasketId);
+            var basketModel = _mapper.Map<ProductBasket>(productBasket);
+            _basketService.AddProductToBasket(basketModel);
 
-            var basketReadModel = _mapper.Map<BasketReadDto>(basketModel);
-            return CreatedAtAction(nameof(AddProductToBasket), new {id = basketReadModel.Id }, basketReadModel);
-        }
-
-        [HttpPatch]
-        public ActionResult UpdateBasket(int id, BasketUpdateDto basketUpdate)
-        {
-            var basketModelFromRepo = _basketService.GetBasketByPublicUserId(id);
-            if (basketModelFromRepo == null)
-            {
-                return NotFound();
-            }
-
-            _mapper.Map(basketUpdate, basketModelFromRepo);
-            _basketService.UpdateBasket(basketModelFromRepo);
-            _basketService.SaveChanges();
-
-            return Ok();
+            var basketReadModel = _mapper.Map<ProductBasketReadDto>(basketModel);
+            return Ok(basketReadModel);
         }
 
         [HttpPost]
         [Route("CreateBasket")]
         public ActionResult<BasketReadDto> CreateBasket(BasketCreateDto createDto)
         {
-            try
-            {
-                _basketService.CreateBasket(createDto.PublicUserId);
-                return Ok(new {message = "Basket created"});
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
+            var basketModel = _mapper.Map<Basket>(createDto);
+            _basketService.CreateBasket(basketModel);
 
+            var basketReadModel = _mapper.Map<BasketReadDto>(basketModel);
+            return CreatedAtAction(nameof(CreateBasket), new {id = basketReadModel.Id}, basketReadModel);
         }
     }
 }

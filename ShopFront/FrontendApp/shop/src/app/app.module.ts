@@ -16,6 +16,7 @@ import { ProductsComponent } from './features/products/products/products.compone
 import { CarouselComponent } from './features/carousel/carousel/carousel.component';
 import { BasketComponent } from './features/basket/basket/basket.component';
 import { UserComponent } from './features/user/user/user.component';
+import { OrderComponent } from './features/order/order/order.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UserComponent } from './features/user/user/user.component';
     ProductsComponent,
     CarouselComponent,
     BasketComponent,
-    UserComponent
+    UserComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

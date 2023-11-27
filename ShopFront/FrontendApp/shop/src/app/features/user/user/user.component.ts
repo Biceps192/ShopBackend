@@ -23,11 +23,13 @@ export class UserComponent implements OnInit {
     }
 
     this.createBasketRequest = {
-      publicUserId: 0
+      publicUserId: 0,
+      basketId: 0
     }
   }
   ngOnInit(): void {
     const saveData = this.publicUserService.getUserData();
+    console.log('Saved data: ', saveData);
     if(saveData){
       this.publicUserData = saveData;
     }
@@ -41,12 +43,11 @@ export class UserComponent implements OnInit {
         console.log('User Add')
         this.savePublicUserData();
         this.createBasketRequest.publicUserId = response.id;
-        console.log('Public User Id: ', this.createBasketRequest.publicUserId); 
         this.basketService.createBasket(this.createBasketRequest).subscribe({
           next: (response) =>{
+            this.createBasketRequest.basketId = response.id;
+            this.saveBasket();
             console.log('Basket created');
-            debugger;
-            this.basketService.setBasketStatus(true);
           },
           error: (error) =>{
             console.error('Error');
@@ -58,8 +59,11 @@ export class UserComponent implements OnInit {
   }
 
   savePublicUserData(){
-    debugger;
-    this.publicUserService.saveUserData(this.publicUserData);
+    this.publicUserService.saveUserData(this.model);
+  }
+
+  saveBasket(){
+    this.basketService.saveBasket(this.createBasketRequest);
   }
 
 }

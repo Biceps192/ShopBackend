@@ -1,4 +1,5 @@
-﻿using BackendApp.IRepo;
+﻿using BackendApp.Dto.BasketDto;
+using BackendApp.IRepo;
 using BackendApp.Models;
 using BackendApp.SqlRepo;
 
@@ -8,9 +9,8 @@ namespace BackendApp.Services
     {
         Basket GetBasketByPublicUserId(int id);
         bool SaveChanges();
-        void CreateBasket(int publicUserId);
-        void UpdateBasket(Basket basket);
-        void AddProductToBasket(int productId, int basketId);
+        void CreateBasket(Basket basket);
+        void AddProductToBasket(ProductBasket productBasket);
     }
 
     public class BasketService : IBasketService
@@ -22,14 +22,14 @@ namespace BackendApp.Services
             _basketRepo = basketRepo;
         }
 
-        public void AddProductToBasket(int productId, int basketId)
+        public void AddProductToBasket(ProductBasket productBasket)
         {
-            _basketRepo.AddItemToBasket(productId, basketId);
+            _basketRepo.AddItemToBasket(productBasket);
         }
 
-        public void CreateBasket(int publicUserId)
+        public void CreateBasket(Basket basket)
         {
-            _basketRepo.CreateBasket(publicUserId);
+            _basketRepo.CreateBasket(basket);
         }
 
         public Basket GetBasketByPublicUserId(int id)
@@ -39,12 +39,7 @@ namespace BackendApp.Services
 
         public bool SaveChanges()
         {
-            return _basketRepo != null;
-        }
-
-        public void UpdateBasket(Basket basket)
-        {
-            _basketRepo.UpdateBasket(basket);
+            return _basketRepo.SaveChanges();
         }
     }
 }
