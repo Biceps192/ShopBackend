@@ -2,6 +2,7 @@
 using BackendApp.Dto.BasketDto;
 using BackendApp.IRepo;
 using BackendApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackendApp.SqlRepo
 {
@@ -17,42 +18,60 @@ namespace BackendApp.SqlRepo
         public void AddItemToBasket(ProductBasket productBasketDto)
         {
             var productBasket = new ProductBasket();
-
+            var basket = _context.Baskets.FirstOrDefault(x => x.Id == productBasketDto.BasketId);
             var existingProductInBasket = _context.ProductBasket
                 .FirstOrDefault(x => x.BasketId == productBasketDto.BasketId && 
                 x.ProductId == productBasketDto.ProductId);
+            var product = _context.Products.FirstOrDefault(x => x.Id == productBasketDto.ProductId);
 
-            if (existingProductInBasket != null)
+            if (product.Count == 0)
             {
-                existingProductInBasket.Quantity++;
-                productBasket = existingProductInBasket;
+                throw new Exception("Out Of Stock");
+            }
+            else if (productBasketDto.Quantity > product.Count)
+            {
+                throw new Exception($"Sorry, we only have {product.Count} items");
             }
             else
             {
-                var newProductBasket = new ProductBasket
+                if (existingProductInBasket != null)
                 {
-                    ProductId = productBasketDto.ProductId,
-                    BasketId = productBasketDto.BasketId,
-                    Quantity = 1
-                };
+                    var newQuantity = existingProductInBasket.Quantity + productBasketDto.Quantity;
+                    existingProductInBasket.Quantity = newQuantity;
+                    productBasket = existingProductInBasket;
+                }
+                else
+                {
+                    var newProductBasket = new ProductBasket
+                    {
+                        ProductId = productBasketDto.ProductId,
+                        BasketId = productBasketDto.BasketId,
+                        Quantity = productBasketDto.Quantity
+                    };
 
-                productBasket = newProductBasket;
+                    productBasket = newProductBasket;
 
-                _context.ProductBasket.Add(newProductBasket);
-            }
+                    _context.ProductBasket.Add(newProductBasket);
+                }
 
-            _context.SaveChanges();
+                _context.SaveChanges();
 
-            var basket = _context.Baskets.FirstOrDefault(x => x.Id == productBasket.BasketId);
-            if (basket != null)
-            {
-                decimal newPrice = _context.ProductBasket
-                    .Where(x => x.BasketId == productBasket.BasketId)
-                    .Select(x => x.Product.Price * x.Quantity)
-                    .Sum();
 
-                basket.Price = newPrice;
-                
+                if (basket != null)
+                {
+                    decimal newPrice = _context.ProductBasket
+                        .Where(x => x.BasketId == productBasket.BasketId)
+                        .Select(x => x.Product.Price * x.Quantity)
+                        .Sum();
+
+                    basket.Price = newPrice;
+
+                    _context.SaveChanges();
+                }
+
+                var newCount = product.Count - productBasketDto.Quantity;
+                product.Count = newCount;
+
                 _context.SaveChanges();
             }
         }
@@ -76,6 +95,18 @@ namespace BackendApp.SqlRepo
             basket.Id = newBasket.Id;
         }
 
+        public BasketPriceDto GetBasket(int id)
+        {
+            var basket = _context.Baskets.FirstOrDefault(x => x.Id == id);
+
+            var basketPricedto = new BasketPriceDto
+            {
+                Price = basket.Price
+            };
+
+            return basketPricedto;
+        }
+
         public Basket GetBasketByPublicUserId(int id)
         {
             return _context.Baskets.FirstOrDefault(x => x.PublicUserId == id);
@@ -84,11 +115,6 @@ namespace BackendApp.SqlRepo
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
-        }
-
-        public void UpdatePrice(Basket basket)
-        {
-            throw new NotImplementedException();
         }
     }
 }

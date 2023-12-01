@@ -17,6 +17,7 @@ import { CarouselComponent } from './features/carousel/carousel/carousel.compone
 import { BasketComponent } from './features/basket/basket/basket.component';
 import { UserComponent } from './features/user/user/user.component';
 import { OrderComponent } from './features/order/order/order.component';
+import { SubcategoryComponent } from './features/category/subcategory/subcategory.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { OrderComponent } from './features/order/order/order.component';
     CarouselComponent,
     BasketComponent,
     UserComponent,
-    OrderComponent
+    OrderComponent,
+    SubcategoryComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,5 @@ namespace BackendApp.IRepo
         IEnumerable<Order> GetOrders();
         Order GetOrderByBasketId(int basketId);
         void CreateOrderByBasketId(int basketId);
-        void UpdateOrder(Order order);
     }
 }

@@ -1,13 +1,13 @@
+<div class="basket">
+    <h2>Your Basket</h2>
+        <ul>
+          <li *ngFor="let product of products">
+            {{ product.name }} - {{ product.price }}$ |
+            {{product.quantity}} things 
+          </li>
+        </ul>
+    <p>Total: {{price.price}}$</p>
+</div>
 <div>
-    <div *ngFor="let product of products">
-        <div>{{product.productId}}</div>
-        <div>{{product.name}}</div>
-        <div>{{product.price}}</div>
-    </div>
-
-    <div>Total: {{calculateTotal()}}</div>
-    
-    <div>
-        <a class="btn btn-primary" routerLink="/order">Go to Order :3</a>
-    </div>
+    <a class="btn btn-primary btn-go-to-order" routerLink="/order">Go to Order :3</a>
 </div>

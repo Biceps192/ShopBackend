@@ -2,6 +2,7 @@
 using BackendApp.Dto.OrderDto;
 using BackendApp.IRepo;
 using BackendApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackendApp.SqlRepo
 {
@@ -27,15 +28,11 @@ namespace BackendApp.SqlRepo
                     OrderDate = DateTime.UtcNow
                 };
 
-
                 _context.Add(newOrder);
                 _context.SaveChanges();
             }
-        }
 
-        public void DeleteOrder(Order order)
-        {
-            throw new NotImplementedException();
+            var productBasket = _context.ProductBasket.Where(x => x.BasketId == basketId).ExecuteDelete();
         }
 
         public Order GetOrderByBasketId(int id)
@@ -51,11 +48,6 @@ namespace BackendApp.SqlRepo
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
-        }
-
-        public void UpdateOrder(Order order)
-        {
-            throw new NotImplementedException();
         }
     }
 }

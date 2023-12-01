@@ -12,6 +12,7 @@ namespace BackendApp.IRepo
         IEnumerable<Product> GetProductsByCategory(int id);
         IEnumerable<ProductByBasketIdDto> GetProductsByBasketId(int basketId);
         IEnumerable<Product> GetProductsByIds(List<int> productIds);
+        IEnumerable<Product> GetProductsBySubcategory(int subcategoryId);
 
     }
 }

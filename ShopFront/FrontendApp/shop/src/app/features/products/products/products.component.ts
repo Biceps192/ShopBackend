@@ -19,13 +19,15 @@ export class ProductsComponent implements OnInit {
   products: ProductReadModel[] = [];
   basketStatus: boolean = false;
   addItemModel: AddItemToBasket;
+  showForm: boolean[] = [];
 
   constructor( private route: ActivatedRoute, private categoryService: CategoryService, private productService: ProductService, private basketService: BasketService){
     this.categoryId = 1;
 
     this.addItemModel = {
       productId: 0,
-      basketId: this.basketService.getBasketId().basketId
+      basketId: this.basketService.getBasketId().basketId,
+      quantity: 1
     }
   }
 
@@ -44,13 +46,29 @@ export class ProductsComponent implements OnInit {
     .subscribe(products => this.products = products);
   }
 
-  basketStatusTrue(productId: number){
+  basketStatusTrue(productId: number, index: number){
+    debugger;
     this.addItemModel.productId = productId;    
+    this.addItemToBasket();
+    this.basketService.setBasketStatus(true);
+    this.addItemModel.quantity = 1;
+    this.cancel(index);
+  }
+
+  addItemToBasket(){
     this.basketService.addItemToBasket(this.addItemModel).subscribe({
       next: (response) => console.log('Item added'),
       error: (err) => console.error('Error: ', err)
     });
-    this.basketService.setBasketStatus(true);
+  }
+
+  showQuantityForm(index: number): void{
+    debugger;
+    this.showForm[index] = true;
+  }
+
+  cancel(index: number): void{
+    this.showForm[index] = false;
   }
 
 }

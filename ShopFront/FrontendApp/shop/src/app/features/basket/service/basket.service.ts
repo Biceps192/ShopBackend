@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CreateBasketRequest } from '../models/create-basket.model';
 import { AddItemToBasket } from '../models/add-item.model';
+import { BasketReadModel } from '../models/basket-read.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,6 @@ import { AddItemToBasket } from '../models/add-item.model';
 export class BasketService {
   private basketStatusSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private readonly basketKey = 'basket';
-  private readonly basketIdKey = 'basketId';
   
   constructor(private http: HttpClient) { 
   }
@@ -21,6 +21,10 @@ export class BasketService {
 
   createBasket(model: CreateBasketRequest): Observable<any>{
     return this.http.post<any>('https://localhost:7093/api/Basket/CreateBasket', model);
+  }
+
+  getBasketPrice(basketId: number): Observable<BasketReadModel>{
+    return this.http.get<BasketReadModel>(`https://localhost:7093/api/Basket/GetBasketById?id=${basketId}`);
   }
 
   getBasketStatus(): Observable<boolean>{

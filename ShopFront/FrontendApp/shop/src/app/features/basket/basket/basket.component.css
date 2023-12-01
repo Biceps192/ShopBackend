@@ -1,0 +1,37 @@
+.basket {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    width:fit-content;
+    margin: 20px auto;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 5px;
+  }
+  
+  p {
+    font-weight: bold;
+  }
+
+  .btn-go-to-order {
+    position: flex; /* Фиксированная позиция */
+    bottom: 50%; /* Отступ от нижнего края */
+    padding: 10px 20px; /* Поля кнопки */
+    margin-left: 45%;
+    background-color: #3498db; /* Цвет фона кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Убрать границы */
+    border-radius: 5px; /* Скругление углов */
+    text-decoration: none; /* Убрать подчеркивание ссылки */
+    transition: background-color 0.3s ease; /* Плавное изменение цвета фона при наведении */
+  }
+  .btn-go-to-order:hover {
+    background-color: #2980b9; /* Цвет фона при наведении */
+  }

@@ -20,8 +20,12 @@ export class ProductService {
   getProductsByBasketId(id: number): Observable<ProductsByBasketId[]>{
     return this.http.get<ProductsByBasketId[]>(`https://localhost:7093/api/Product/GetAllProductsByBasketId?basketId=${id}`);
   }
-
+  
   getProductById(id: number): Observable<ProductReadModel[]>{
     return this.http.get<ProductReadModel[]>(`https://localhost:7093/api/Product/${id}`);
+  }
+
+  getProductsBySubcategory(id: number): Observable<ProductReadModel[]>{
+    return this.http.get<ProductReadModel[]>(`https://localhost:7093/api/Product/GetProductsBySubcategoryId?subcategoryId=${id}`);
   }
 }

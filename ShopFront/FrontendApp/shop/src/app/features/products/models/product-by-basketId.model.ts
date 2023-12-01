@@ -1,5 +1,6 @@
 export interface ProductsByBasketId{
     productId: number,
     name: string,
-    price: number
+    price: number,
+    quantity: number
 }

@@ -6,6 +6,7 @@ import { RegistrationComponent } from './features/registration/registration/regi
 import { ProductsComponent } from './features/products/products/products.component';
 import { BasketComponent } from './features/basket/basket/basket.component';
 import { OrderComponent } from './features/order/order/order.component';
+import { SubcategoryComponent } from './features/category/subcategory/subcategory.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'registration', component: RegistrationComponent},
   {path: 'categories/:id', component: ProductsComponent},
   {path: 'basket', component: BasketComponent},
-  {path: 'order', component: OrderComponent}
+  {path: 'order', component: OrderComponent},
+  {path: 'subcategory/:id', component: SubcategoryComponent}
 ];
 
 @NgModule({

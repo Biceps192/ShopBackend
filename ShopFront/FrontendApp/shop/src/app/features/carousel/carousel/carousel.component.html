@@ -1,5 +1,5 @@
 <owl-carousel-o [options]="customOptions" class="carousel">
     <ng-container *ngFor="let item of model">
-        <ng-template carouselSlide><a routerLink="/categories" class="border">{{item.name}}</a></ng-template>
+        <ng-template carouselSlide><a routerLink="/subcategory/{{item.id}}" class="border" (click)="setSubcategory(item)">{{item.name}}, {{item.id}}</a></ng-template>
     </ng-container>
 </owl-carousel-o>

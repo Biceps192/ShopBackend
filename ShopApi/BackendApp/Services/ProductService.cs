@@ -14,6 +14,7 @@ namespace BackendApp.Services
         IEnumerable<Product> GetProductsByCategory(int id);
         IEnumerable<ProductByBasketIdDto> GetAllProductsByBasketId(int basketId);
         IEnumerable<Product> GetProductsByIds(List<int> id);
+        IEnumerable<Product> GetProductsBySubcategory(int subcategoryId);
     }
 
     public class ProductService : IProductService
@@ -59,6 +60,11 @@ namespace BackendApp.Services
         public IEnumerable<Product> GetProductsByIds(List<int> id)
         {
             return _productRepo.GetProductsByIds(id);
+        }
+
+        public IEnumerable<Product> GetProductsBySubcategory(int subcategoryId)
+        {
+            return _productRepo.GetProductsBySubcategory(subcategoryId);
         }
     }
 }

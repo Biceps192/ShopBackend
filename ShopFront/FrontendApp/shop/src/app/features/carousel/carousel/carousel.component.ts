@@ -15,7 +15,7 @@ export class CarouselComponent implements OnInit {
   model: CarouselReadModel[] = [];
   categoryId: number ;
 
-  constructor(private carouselService: CarouselService, private categoryService: CategoryService, private route: ActivatedRoute){
+  constructor(private carouselService: CarouselService, private route: ActivatedRoute){
     this.categoryId = 0;
   }
 
@@ -30,6 +30,14 @@ export class CarouselComponent implements OnInit {
   onGetSubcategories(categoryId: number){
     this.carouselService.getSubcategoriesByCategory(categoryId).
     subscribe(model => this.model = model);
+  }
+
+  getSubcategoryId(){
+    this.carouselService.getSubcategoryId();
+  }
+
+  setSubcategory(subcategory: any){
+    this.carouselService.setSubcategory(subcategory);
   }
   
   customOptions: OwlOptions = {

@@ -7,7 +7,6 @@ namespace BackendApp.Services
     {
         Order GetOrderByBasketId(int id);
         IEnumerable<Order> GetOrders();
-        void UpdateOrder(Order order);
         void CreateOrderByBasketId(int basketId);
     }
 
@@ -33,11 +32,6 @@ namespace BackendApp.Services
         public IEnumerable<Order> GetOrders()
         {
             return _orderRepo.GetOrders();
-        }
-
-        public void UpdateOrder(Order order)
-        {
-            _orderRepo.UpdateOrder(order);
         }
     }
 }

@@ -56,7 +56,8 @@ namespace BackendApp.SqlRepo
                 {
                     ProductId = x.ProductId,
                     Price = x.Product.Price,
-                    Name = x.Product.Name
+                    Name = x.Product.Name,
+                    Quantity = x.Quantity
                 })
                 .ToList();
 
@@ -66,6 +67,13 @@ namespace BackendApp.SqlRepo
         public IEnumerable<Product> GetProductsByIds(List<int> productIds)
         {
             return _context.Products.Where(x => productIds.Contains(x.Id)).ToList();
+        }
+
+        public IEnumerable<Product> GetProductsBySubcategory(int subcategoryId)
+        {
+            var products = _context.Products.Where(x => x.SubcategoryId == subcategoryId).ToList();
+
+            return products;
         }
     }
 }

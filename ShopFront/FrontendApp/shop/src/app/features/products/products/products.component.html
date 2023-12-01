@@ -4,15 +4,25 @@
 </div>
 
 <div class="rows">
-    <div *ngFor="let item of products">
+    <div *ngFor="let item of products; let i = index">
         <div class="product-card">
-            <img src="url/to/product-image.jpg" alt="Product Image" class="product-image">
+            <img [src]="'/assets/images/products/' + item.id + '.jpg'" alt="Product Image" class="product-image">
                 <div class="product-details">
                     <h3 class="product-title">{{item.name}}</h3>
                     <h5 class="product-description">{{item.description}}</h5>
                     <p class="product-price">{{item.price}}$</p>
-                    <button class="add-to-cart-btn" (click)="basketStatusTrue(item.id)">Add to Cart</button>
-                </div>       
+                        <div *ngIf="showForm[i]">
+                            <form #addItemForm="ngForm">
+                                <div class="form-group">
+                                  <label for="quantity">Quantity:</label>
+                                  <input type="number" class="form-control" id="quantity" name="quantity" [(ngModel)]="addItemModel.quantity" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary" (click)="basketStatusTrue(item.id, i)">Add Item to Basket</button>
+                                <button class="btn btn-secondary" (click)="cancel(i)">Cancel</button>
+                              </form>
+                        </div>
+                    <button class="add-to-cart-btn" (click)="showQuantityForm(i)">Add to Cart</button>
+                </div>
         </div>
     </div>
 </div>

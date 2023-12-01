@@ -89,5 +89,14 @@ namespace BackendApp.Controllers
 
             return Ok(products);
         }
+
+        [HttpGet]
+        [Route("GetProductsBySubcategoryId")]
+        public ActionResult<IEnumerable<ProductReadDto>> GetProductsBySubcategory(int subcategoryId)
+        {
+            var products = _productService.GetProductsBySubcategory(subcategoryId);
+
+            return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(products));
+        }
     }
 }

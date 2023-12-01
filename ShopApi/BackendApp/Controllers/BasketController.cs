@@ -52,5 +52,14 @@ namespace BackendApp.Controllers
             var basketReadModel = _mapper.Map<BasketReadDto>(basketModel);
             return CreatedAtAction(nameof(CreateBasket), new {id = basketReadModel.Id}, basketReadModel);
         }
+
+        [HttpGet]
+        [Route("GetBasketById")]
+        public ActionResult<BasketPriceDto> GetBasketById(int id) 
+        { 
+            var basket = _basketService.GetBasketById(id);
+
+            return Ok(basket);
+        }
     }
 }

@@ -1,4 +1,5 @@
 export interface AddItemToBasket{
     basketId: number,
-    productId: number
+    productId: number,
+    quantity: number
 }

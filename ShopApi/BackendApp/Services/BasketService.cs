@@ -11,6 +11,7 @@ namespace BackendApp.Services
         bool SaveChanges();
         void CreateBasket(Basket basket);
         void AddProductToBasket(ProductBasket productBasket);
+        BasketPriceDto GetBasketById(int id);
     }
 
     public class BasketService : IBasketService
@@ -30,6 +31,11 @@ namespace BackendApp.Services
         public void CreateBasket(Basket basket)
         {
             _basketRepo.CreateBasket(basket);
+        }
+
+        public BasketPriceDto GetBasketById(int id)
+        {
+            return _basketRepo.GetBasket(id);
         }
 
         public Basket GetBasketByPublicUserId(int id)
