@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BasketService } from 'src/app/features/basket/service/basket.service';
+import { LoginModel } from 'src/app/features/login/models/login.model';
+import { LoginService } from 'src/app/features/login/service/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,7 +11,7 @@ import { BasketService } from 'src/app/features/basket/service/basket.service';
 export class NavbarComponent implements OnInit {
   basketStatus: boolean = false;
 
-  constructor(private basketService: BasketService){
+  constructor(private basketService: BasketService, public loginService: LoginService){
 
   }
 

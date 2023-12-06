@@ -35,3 +35,41 @@
   .btn-go-to-order:hover {
     background-color: #2980b9; /* Цвет фона при наведении */
   }
+
+  .remove-form {
+    margin-bottom: 10px; /* Отступ снизу */
+  }
+  
+  /* Стили для поля ввода */
+  .remove-form input[type="number"] {
+    padding: 5px; /* Поля вокруг текста внутри поля ввода */
+    margin-right: 10px; /* Отступ справа */
+  }
+  
+  /* Стили для кнопки */
+  .remove-form button {
+    padding: 5px 10px; /* Размер кнопки */
+    background-color: #ff0000; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста */
+    border: none; /* Убираем границу */
+    cursor: pointer; /* Изменяем курсор при наведении на кнопку */
+  }
+  
+  /* Стили при наведении на кнопку */
+  .remove-form button:hover {
+    background-color: #cc0000; /* Цвет фона при наведении */
+  }
+
+  .remove-button {
+    padding: 5px 10px; /* Размер кнопки */
+    background-color: #ff0000; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста */
+    border: none; /* Убираем границу */
+    cursor: pointer; /* Изменяем курсор при наведении на кнопку */
+    border-radius: 5px; /* Округление углов */
+  }
+  
+  /* Стили при наведении на кнопку */
+  .remove-button:hover {
+    background-color: #cc0000; /* Цвет фона при наведении */
+  }

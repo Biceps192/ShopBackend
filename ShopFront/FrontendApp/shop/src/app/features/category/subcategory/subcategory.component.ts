@@ -25,7 +25,7 @@ export class SubcategoryComponent implements OnInit {
 
     this.addItemModel ={
       productId: 0,
-      basketId: 0,
+      basketId: this.basketService.getBasketId().basketId,
       quantity: 1
     }
   }
@@ -42,6 +42,7 @@ export class SubcategoryComponent implements OnInit {
   }
 
   addItemToBasket(){
+    debugger;
     this.basketService.addItemToBasket(this.addItemModel).subscribe({
       next: (response) => console.log('Item added'),
       error: (err) => console.error('Error: ', err)
@@ -58,7 +59,6 @@ export class SubcategoryComponent implements OnInit {
   }
 
   showQuantityForm(index: number): void{
-    debugger;
     this.showForm[index] = true;
   }
 

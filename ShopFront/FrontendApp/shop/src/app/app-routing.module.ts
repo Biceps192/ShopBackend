@@ -7,6 +7,9 @@ import { ProductsComponent } from './features/products/products/products.compone
 import { BasketComponent } from './features/basket/basket/basket.component';
 import { OrderComponent } from './features/order/order/order.component';
 import { SubcategoryComponent } from './features/category/subcategory/subcategory.component';
+import { TypageComponent } from './features/order/typage/typage.component';
+import { LoginComponent } from './features/login/login/login.component';
+import { FavouritesComponent } from './features/favourites/favourites/favourites.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -15,7 +18,10 @@ const routes: Routes = [
   {path: 'categories/:id', component: ProductsComponent},
   {path: 'basket', component: BasketComponent},
   {path: 'order', component: OrderComponent},
-  {path: 'subcategory/:id', component: SubcategoryComponent}
+  {path: 'subcategory/:id', component: SubcategoryComponent},
+  {path: 'tyfororder', component: TypageComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'favourites', component: FavouritesComponent}
 ];
 
 @NgModule({

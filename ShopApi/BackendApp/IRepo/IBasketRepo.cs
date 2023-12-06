@@ -10,5 +10,6 @@ namespace BackendApp.IRepo
         void CreateBasket(Basket basket);
         void AddItemToBasket(ProductBasket productBasket);
         BasketPriceDto GetBasket(int id);
+        bool RemoveItemFromBasket(ProductBasketDeleteDto productBasketDeleteDto);
     }
 }

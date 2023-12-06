@@ -112,6 +112,43 @@ namespace BackendApp.SqlRepo
             return _context.Baskets.FirstOrDefault(x => x.PublicUserId == id);
         }
 
+        public bool RemoveItemFromBasket(ProductBasketDeleteDto productBasketDeleteDto)
+        {
+            var itemToRemove = _context.ProductBasket
+                .FirstOrDefault(x => x.ProductId == productBasketDeleteDto.ProductId
+                                && x.BasketId == productBasketDeleteDto.BasketId);
+            var product = _context.Products.FirstOrDefault(x => x.Id == productBasketDeleteDto.ProductId);
+            var basket = _context.Baskets.FirstOrDefault(x => x.Id == productBasketDeleteDto.BasketId);
+
+            if (itemToRemove == null)
+            {
+                return false;
+            }
+            else 
+            { 
+                if (productBasketDeleteDto.Quantity < itemToRemove.Quantity)
+                {
+                    var newQuantity = itemToRemove.Quantity - productBasketDeleteDto.Quantity;
+                    var newCount = productBasketDeleteDto.Quantity + product.Count;
+                    itemToRemove.Quantity = newQuantity;
+                    product.Count = newCount;
+                    decimal newPrice = basket.Price - (product.Price * newQuantity);
+                    basket.Price = newPrice;
+                    _context.SaveChanges();
+                }
+                else if (productBasketDeleteDto.Quantity == itemToRemove.Quantity || productBasketDeleteDto.Quantity > itemToRemove.Quantity)
+                {
+                    var newCount = productBasketDeleteDto.Quantity + product.Count;
+                    product.Count = newCount;
+                    decimal newPrice = basket.Price - (itemToRemove.Quantity * product.Price);
+                    basket.Price = newPrice;
+                    _context.ProductBasket.Remove(itemToRemove);
+                    _context.SaveChanges();
+                }
+                return true;
+            }
+        }
+
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);

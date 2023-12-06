@@ -18,6 +18,11 @@ import { BasketComponent } from './features/basket/basket/basket.component';
 import { UserComponent } from './features/user/user/user.component';
 import { OrderComponent } from './features/order/order/order.component';
 import { SubcategoryComponent } from './features/category/subcategory/subcategory.component';
+import { PaginatorComponent } from './features/paginator/paginator/paginator.component';
+import { AngularPaginatorModule } from 'angular-paginator';
+import { TypageComponent } from './features/order/typage/typage.component';
+import { LoginComponent } from './features/login/login/login.component';
+import { FavouritesComponent } from './features/favourites/favourites/favourites.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +39,10 @@ import { SubcategoryComponent } from './features/category/subcategory/subcategor
     UserComponent,
     OrderComponent,
     SubcategoryComponent,
+    PaginatorComponent,
+    TypageComponent,
+    LoginComponent,
+    FavouritesComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +50,7 @@ import { SubcategoryComponent } from './features/category/subcategory/subcategor
     FormsModule,
     HttpClientModule,
     BsDropdownModule,
+    AngularPaginatorModule,
     CarouselModule
   ],
   providers: [],

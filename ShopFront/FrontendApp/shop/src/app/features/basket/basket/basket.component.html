@@ -1,9 +1,13 @@
 <div class="basket">
     <h2>Your Basket</h2>
         <ul>
-          <li *ngFor="let product of products">
-            {{ product.name }} - {{ product.price }}$ |
-            {{product.quantity}} things 
+          <li *ngFor="let product of products; let i = index">
+            {{ product.name }} - {{ product.price }}$ | {{product.quantity}} things
+            <div *ngIf="showForm[i]" class="remove-form">
+              <input type="number" [(ngModel)]="deleteItem.quantity">
+              <button (click)="removeItemsFromBasket(product.productId, i)">Remove Item</button>
+            </div>
+            <button (click)="showQuantityForm(i)" class="remove-button" *ngIf="!showForm[i]">Remove</button>  
           </li>
         </ul>
     <p>Total: {{price.price}}$</p>

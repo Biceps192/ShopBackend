@@ -33,6 +33,9 @@ namespace BackendApp.SqlRepo
             }
 
             var productBasket = _context.ProductBasket.Where(x => x.BasketId == basketId).ExecuteDelete();
+
+            basket.Price = 0;
+            _context.SaveChanges();
         }
 
         public Order GetOrderByBasketId(int id)

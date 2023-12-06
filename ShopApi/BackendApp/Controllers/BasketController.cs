@@ -42,6 +42,20 @@ namespace BackendApp.Controllers
             return Ok(basketReadModel);
         }
 
+        [HttpDelete]
+        [Route("DeleteFromBasket")]
+        public ActionResult DeleteProduct(ProductBasketDeleteDto deleteDto)
+        {
+            var success = _basketService.RemoveItemFromBasket(deleteDto);
+
+            if (!success)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
         [HttpPost]
         [Route("CreateBasket")]
         public ActionResult<BasketReadDto> CreateBasket(BasketCreateDto createDto)

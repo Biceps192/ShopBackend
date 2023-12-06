@@ -4,6 +4,7 @@ import { BasketService } from '../service/basket.service';
 import { ProductsByBasketId } from '../../products/models/product-by-basketId.model';
 import { CreateBasketRequest } from '../models/create-basket.model';
 import { BasketReadModel } from '../models/basket-read.model';
+import { AddItemToBasket } from '../models/add-item.model';
 
 @Component({
   selector: 'app-basket',
@@ -15,6 +16,8 @@ export class BasketComponent implements OnInit {
   basketId: number;
   products: ProductsByBasketId[] =[];
   price: BasketReadModel;
+  showForm: boolean[] = [];
+  deleteItem: AddItemToBasket;
 
   constructor(private productService: ProductService, private basketService: BasketService){
     this.basket = basketService.getBasketId();
@@ -22,6 +25,12 @@ export class BasketComponent implements OnInit {
 
     this.price = {
       price: 0
+    }
+
+    this.deleteItem ={
+      basketId: this.basketId,
+      productId: 0,
+      quantity: 0
     }
   }
   ngOnInit(): void {
@@ -48,5 +57,24 @@ export class BasketComponent implements OnInit {
       this.basketService.getBasketPrice(basketId).subscribe(price => this.price = price);
     }
     return this.price;
+  }
+
+  removeItemsFromBasket(productId: number, index: number){
+    debugger;
+    this.showQuantityForm(index);
+    this.deleteItem.productId = productId;
+    this.basketService.deleteItemFromBasket(this.deleteItem).subscribe({
+      next: (response) => console.log('Item deleted'),
+      error: (err) => console.error('Error: ', err)
+    });
+    this.hideQuantityForm(index);
+  }
+
+  showQuantityForm(index: number){
+    this.showForm[index] = true;
+  }
+
+  hideQuantityForm(index: number){
+    this.showForm[index] = false;
   }
 }

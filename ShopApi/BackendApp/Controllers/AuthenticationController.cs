@@ -42,11 +42,11 @@ namespace BackendApp.Controllers
 
         [HttpPost]
         [Route("login")]
-        public ActionResult<UserReadDto> Login(UserCreateDto dto)
+        public ActionResult<Token> Login(LoginDto dto)
         {
             var user = _service.GetUserByEmail(dto.Email);
 
-            if (user != null && user.Username != dto.Username)
+            if (user == null)
             {
                 return NotFound("User not found");
             }
@@ -55,7 +55,12 @@ namespace BackendApp.Controllers
                 return BadRequest("Wrong password");
             }
 
-            string token = _service.CreateToken(user);
+            string token1 = _service.CreateToken(user);
+
+            Token token = new Token
+            {
+                AuthToken = token1
+            };
 
             return Ok(token);
         }

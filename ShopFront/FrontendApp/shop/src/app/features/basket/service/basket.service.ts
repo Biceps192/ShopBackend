@@ -26,6 +26,14 @@ export class BasketService {
   getBasketPrice(basketId: number): Observable<BasketReadModel>{
     return this.http.get<BasketReadModel>(`https://localhost:7093/api/Basket/GetBasketById?id=${basketId}`);
   }
+  
+  deleteItemFromBasket(model: AddItemToBasket): Observable<any>{
+    const httpOptions ={
+      body: model
+    };
+
+    return this.http.delete<any>('https://localhost:7093/api/Basket/DeleteFromBasket', httpOptions);
+  }
 
   getBasketStatus(): Observable<boolean>{
     return this.basketStatusSubject.asObservable();
@@ -44,5 +52,4 @@ export class BasketService {
     const basketId = localStorage.getItem(this.basketKey);
     return basketId ? JSON.parse(basketId): null;  
   }
-
 }
