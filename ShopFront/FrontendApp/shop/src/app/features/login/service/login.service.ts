@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { AuthToken } from '../models/authtoken.model';
+import { UserId } from '../models/user-id.model';
+import { UserSave } from '../models/save-user.model';
+import { UserService } from '../../user/service/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +12,15 @@ import { AuthToken } from '../models/authtoken.model';
 export class LoginService {
 
   authToken: AuthToken;
+  saveUserId: UserSave;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserService) {
     this.authToken = {
       authToken: ''
+    }
+
+    this.saveUserId ={
+      id: 0
     }
    }
 
@@ -29,7 +37,9 @@ export class LoginService {
         if(response && response.authToken){
           debugger;
           this.authToken.authToken = response.authToken;
+          this.saveUserId.id = response.id;
           localStorage.setItem('authToken', this.authToken.authToken);
+          this.userService.saveUserData(this.saveUserId);
         }
       })
     );

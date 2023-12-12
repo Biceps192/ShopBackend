@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using BackendApp.Dto.ProductDto;
+using BackendApp.Dto.UserDto;
 using BackendApp.IRepo;
 using BackendApp.Models;
 using BackendApp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackendApp.Controllers
@@ -97,6 +99,31 @@ namespace BackendApp.Controllers
             var products = _productService.GetProductsBySubcategory(subcategoryId);
 
             return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(products));
+        }
+
+        [HttpPost]
+        [Route("AddToFavourite")]
+        /*[Authorize]*/
+        public ActionResult AddToFavourite(AddToFavouriteDto favouriteDto)
+        {
+            var succes = _productService.AddToFavourite(favouriteDto.UserId, favouriteDto.ProductId);
+
+            if (!succes)
+            {
+                return Conflict("This item already in favourites");
+            }
+
+            return Ok("Product was added in favourites");
+        }
+
+        [HttpGet]
+        [Route("GetFavouritesProductsByUserId")]
+        /*[Authorize]*/
+        public ActionResult<IEnumerable<FavouritesByUserIdReadDto>> GetFavouritesByUserId(int userId)
+        {
+            var products = _productService.GetFavouritesByUserId(userId);
+
+            return Ok(products);
         }
     }
 }

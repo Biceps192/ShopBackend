@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { LoginService } from '../service/login.service';
 import { LoginModel } from '../models/login.model';
 import { devOnlyGuardedExpression } from '@angular/compiler';
+import { UserSave } from '../models/save-user.model';
+import { UserService } from '../../user/service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -10,12 +12,13 @@ import { devOnlyGuardedExpression } from '@angular/compiler';
 })
 export class LoginComponent {
   loginModel: LoginModel;
-
-  constructor(private loginService: LoginService){
+  
+  constructor(private loginService: LoginService, private userService: UserService){
     this.loginModel ={
       email: '',
       password: ''
     }
+
   }
 
   onSubmit(){

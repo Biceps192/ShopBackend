@@ -15,9 +15,9 @@ namespace BackendApp.SqlRepo
             _context = shopContext;
         }
 
-        public void CreateOrderByBasketId(int basketId)
+        public void CreateOrderByBasketId(OrderCreateDto dto)
         {
-            var basket = _context.Baskets.FirstOrDefault(x => x.Id == basketId);
+            var basket = _context.Baskets.FirstOrDefault(x => x.Id == dto.BasketId);
 
             if (basket != null)
             {
@@ -25,14 +25,15 @@ namespace BackendApp.SqlRepo
                 {
                     BasketId = basket.Id,
                     Price = basket.Price,
-                    OrderDate = DateTime.UtcNow
+                    OrderDate = DateTime.UtcNow,
+                    Address = dto.Address
                 };
 
                 _context.Add(newOrder);
                 _context.SaveChanges();
             }
 
-            var productBasket = _context.ProductBasket.Where(x => x.BasketId == basketId).ExecuteDelete();
+            var productBasket = _context.ProductBasket.Where(x => x.BasketId == dto.BasketId).ExecuteDelete();
 
             basket.Price = 0;
             _context.SaveChanges();

@@ -15,6 +15,8 @@ namespace BackendApp.Services
         IEnumerable<ProductByBasketIdDto> GetAllProductsByBasketId(int basketId);
         IEnumerable<Product> GetProductsByIds(List<int> id);
         IEnumerable<Product> GetProductsBySubcategory(int subcategoryId);
+        bool AddToFavourite(int userId, int productId);
+        IEnumerable<FavouritesByUserIdReadDto> GetFavouritesByUserId(int userId);
     }
 
     public class ProductService : IProductService
@@ -65,6 +67,16 @@ namespace BackendApp.Services
         public IEnumerable<Product> GetProductsBySubcategory(int subcategoryId)
         {
             return _productRepo.GetProductsBySubcategory(subcategoryId);
+        }
+
+        public bool AddToFavourite(int userId, int productId)
+        {
+            return _productRepo.AddToFavourite(userId, productId);
+        }
+
+        public IEnumerable<FavouritesByUserIdReadDto> GetFavouritesByUserId(int userId)
+        {
+            return _productRepo.GetFavoriteProductsByUserId(userId);
         }
     }
 }

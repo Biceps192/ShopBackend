@@ -59,6 +59,7 @@ namespace BackendApp.Controllers
 
             Token token = new Token
             {
+                Id = user.Id,
                 AuthToken = token1
             };
 

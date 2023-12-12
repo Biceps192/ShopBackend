@@ -1,4 +1,5 @@
-﻿using BackendApp.Models;
+﻿using BackendApp.Dto.OrderDto;
+using BackendApp.Models;
 
 namespace BackendApp.IRepo
 {
@@ -7,6 +8,6 @@ namespace BackendApp.IRepo
         bool SaveChanges();
         IEnumerable<Order> GetOrders();
         Order GetOrderByBasketId(int basketId);
-        void CreateOrderByBasketId(int basketId);
+        void CreateOrderByBasketId(OrderCreateDto dto);
     }
 }

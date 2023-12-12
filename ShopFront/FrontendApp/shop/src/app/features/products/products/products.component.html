@@ -21,6 +21,9 @@
                                 <button class="btn btn-secondary" (click)="cancel(i)">Cancel</button>
                               </form>
                         </div>
+                        <div *ngIf="loginService.isLoggedIn()">
+                            <button (click)="addToFavourites(item.id)" class="add-to-favorite-btn">Add To Favourite</button>
+                        </div>
                     <button class="add-to-cart-btn" (click)="showQuantityForm(i)">Add to Cart</button>
                 </div>
         </div>

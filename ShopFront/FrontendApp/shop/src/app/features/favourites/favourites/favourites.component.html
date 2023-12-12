@@ -1,1 +1,24 @@
-<p>favourites works!</p>
+<div class="rows">
+  <div class="favorite-card" *ngFor="let favoriteItem of products; let i = index">
+  <div class="product-card">
+    <img [src]="'/assets/images/products/' + favoriteItem.productId + '.jpg'" alt="Product Image" class="product-image">
+        <div class="product-details">
+            <h3 class="product-title">{{favoriteItem.name}}</h3>
+            <h5 class="product-description">{{favoriteItem.description}}</h5>
+            <p class="product-price">{{favoriteItem.price}}$</p>
+                <div *ngIf="showForm[i]">
+                    <form #addItemForm="ngForm">
+                    <div class="form-group">
+                          <label for="quantity">Quantity:</label>
+                          <input type="number" class="form-control" id="quantity" name="quantity" [(ngModel)]="addItemModel.quantity" required>
+                    </div>
+                          <button type="submit" class="btn btn-primary" (click)="addToBasket(favoriteItem.productId, i)">Add Item to Basket</button>
+                          <button class="btn btn-secondary" (click)="cancel(i)">Cancel</button>
+                    </form>
+                </div>
+              <button class="add-to-cart-btn" (click)="showQuantityForm(i)">Choose Quantity</button>
+        </div>
+    </div>
+  </div>
+</div>
+  

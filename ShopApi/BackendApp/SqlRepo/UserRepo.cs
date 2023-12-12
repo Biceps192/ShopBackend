@@ -71,6 +71,13 @@ namespace BackendApp.SqlRepo
             return _context.Users.FirstOrDefault(x => x.Id == id);
         }
 
+        public User GetUserByPublicUserId(int publicUserId)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.PublicUserId == publicUserId);
+
+            return user;
+        }
+
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);

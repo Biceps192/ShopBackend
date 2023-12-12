@@ -44,10 +44,10 @@
       </button>
     </div>
     <div *ngIf="loginService.isLoggedIn()">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        Profile
+      </button>
       <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-          Profile
-        </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <li><a class="dropdown-item" routerLink="/favourites">Favourites</a></li>
           <li><button class="dropdown-item" (click)="loginService.logout()">Logout</button></li>

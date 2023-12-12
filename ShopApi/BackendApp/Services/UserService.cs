@@ -15,6 +15,7 @@ namespace BackendApp.Services
         IEnumerable<PublicUser> GetAllPublicUsers();
         void DeletePublicUser(PublicUser user);
         PublicUser GetPublicUserByEmail(string email);
+        User GetUserByPublicUserId(int pubclicUserId);
     }
     public class UserService: IUserService
     {
@@ -69,6 +70,11 @@ namespace BackendApp.Services
         public User GetUserById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public User GetUserByPublicUserId(int pubclicUserId)
+        {
+            return _userRepo.GetUserByPublicUserId(pubclicUserId);
         }
 
         public bool SaveChanges()

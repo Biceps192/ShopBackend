@@ -14,3 +14,13 @@
   .buttonlogout:hover {
     background-color: #d32f2f;
   }
+
+  .dropdown-menu {
+    max-width: fit-content;
+    white-space: nowrap;
+    margin-right: 54px;
+  }
+  .dropdown-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }

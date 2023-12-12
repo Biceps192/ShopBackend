@@ -75,5 +75,41 @@ namespace BackendApp.SqlRepo
 
             return products;
         }
+
+        public bool AddToFavourite(int userId, int productId)
+        {
+            var existingFavourite = _context.Favourites.FirstOrDefault(x => x.UserId == userId && x.ProductId == productId);
+
+            if (existingFavourite != null)
+            {
+                return false;
+            }
+
+            var favourite = new Favourite
+            {
+                UserId = userId,
+                ProductId = productId,
+                DateAdded = DateTime.UtcNow
+            };
+
+            _context.Favourites.Add(favourite);
+            _context.SaveChanges();
+
+            return true;
+        }
+
+        public IEnumerable<FavouritesByUserIdReadDto> GetFavoriteProductsByUserId(int userId)
+        {
+            var favourites = _context.Favourites.Where(x => x.UserId == userId)
+                .Select(x => new FavouritesByUserIdReadDto
+                {
+                    ProductId = x.ProductId,
+                    Name = x.Product.Name,
+                    Description = x.Product.Description,
+                    Price = x.Product.Price
+                }).ToList();
+
+            return favourites;
+        }
     }
 }

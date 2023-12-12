@@ -1,3 +1,4 @@
 export interface CreateOrder{
-    basketId: number
+    basketId: number,
+    address: string
 }

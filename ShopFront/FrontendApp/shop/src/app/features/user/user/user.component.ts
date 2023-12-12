@@ -28,7 +28,7 @@ export class UserComponent implements OnInit {
     }
   }
   ngOnInit(): void {
-    const saveData = this.publicUserService.getUserData();
+    const saveData = this.publicUserService.getPublicUserData();
     console.log('Saved data: ', saveData);
     if(saveData){
       this.publicUserData = saveData;

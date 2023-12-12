@@ -29,7 +29,8 @@ export class OrderComponent implements OnInit {
     }
 
     this.createOrderDto = {
-      basketId: this.basketId
+      basketId: this.basketId,
+      address: ''
     }
   }
 

@@ -23,6 +23,8 @@ import { AngularPaginatorModule } from 'angular-paginator';
 import { TypageComponent } from './features/order/typage/typage.component';
 import { LoginComponent } from './features/login/login/login.component';
 import { FavouritesComponent } from './features/favourites/favourites/favourites.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { FavouritesComponent } from './features/favourites/favourites/favourites
     HttpClientModule,
     BsDropdownModule,
     AngularPaginatorModule,
-    CarouselModule
+    CarouselModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

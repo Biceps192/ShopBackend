@@ -13,6 +13,7 @@ namespace BackendApp.IRepo
         void CreatePublicUser(PublicUser user);
         void DeletePublicUser(PublicUser user);
         PublicUser GetPublicUserByEmail(string email);
+        User GetUserByPublicUserId(int publicUserId);
 
     }
 }

@@ -39,7 +39,7 @@ namespace BackendApp.Controllers
         public ActionResult<OrderReadDto> CreateOrder(OrderCreateDto dto)
         {
             var order = _mapper.Map<Order>(dto);
-            _orderService.CreateOrderByBasketId(dto.BasketId);
+            _orderService.CreateOrderByBasketId(dto);
 
             var orderReadModel = _mapper.Map<OrderReadDto>(order);
             return Ok(orderReadModel);

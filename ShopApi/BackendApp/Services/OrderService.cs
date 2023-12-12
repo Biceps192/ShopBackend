@@ -1,4 +1,5 @@
-﻿using BackendApp.IRepo;
+﻿using BackendApp.Dto.OrderDto;
+using BackendApp.IRepo;
 using BackendApp.Models;
 
 namespace BackendApp.Services
@@ -7,7 +8,7 @@ namespace BackendApp.Services
     {
         Order GetOrderByBasketId(int id);
         IEnumerable<Order> GetOrders();
-        void CreateOrderByBasketId(int basketId);
+        void CreateOrderByBasketId(OrderCreateDto dto);
     }
 
     public class OrderService : IOrderService
@@ -19,9 +20,9 @@ namespace BackendApp.Services
             _orderRepo = orderRepo;
         }
 
-        public void CreateOrderByBasketId(int basketId)
+        public void CreateOrderByBasketId(OrderCreateDto dto)
         {
-            _orderRepo.CreateOrderByBasketId(basketId);
+            _orderRepo.CreateOrderByBasketId(dto);
         }
 
         public Order GetOrderByBasketId(int id)

@@ -60,5 +60,14 @@ namespace BackendApp.Controllers
 
             return Ok(publicUser);
         }
+
+        [HttpGet]
+        [Route("GetByPublicUserId")]
+        public ActionResult<User> GetByPublicUserId(int id)
+        {
+            var user = _userService.GetUserByPublicUserId(id);
+
+            return Ok(user);
+        }
     }
 }
