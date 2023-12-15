@@ -25,6 +25,7 @@ import { LoginComponent } from './features/login/login/login.component';
 import { FavouritesComponent } from './features/favourites/favourites/favourites.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule} from '@angular/material/paginator';
+import { AllproductsComponent } from './features/products/allproducts/allproducts.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MatPaginatorModule} from '@angular/material/paginator';
     TypageComponent,
     LoginComponent,
     FavouritesComponent,
+    AllproductsComponent,
   ],
   imports: [
     BrowserModule,

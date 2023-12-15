@@ -57,9 +57,9 @@ namespace BackendApp.Controllers
 
         [HttpGet]
         [Route("GetByCategory")]
-        public ActionResult<IEnumerable<ProductReadDto>> GetProductsByCategoryId(int id)
+        public ActionResult<IEnumerable<ProductReadDto>> GetProductsByCategoryId(int id, int page, int pageSize)
         {
-            var products = _productService.GetProductsByCategory(id);
+            var products = _productService.GetProductsByCategory(id, page, pageSize);
 
             return Ok(_mapper.Map<IEnumerable<ProductReadDto>>(products));
         }
@@ -122,6 +122,15 @@ namespace BackendApp.Controllers
         public ActionResult<IEnumerable<FavouritesByUserIdReadDto>> GetFavouritesByUserId(int userId)
         {
             var products = _productService.GetFavouritesByUserId(userId);
+
+            return Ok(products);
+        }
+
+        [HttpGet]
+        [Route("GetCountOfProducts")]
+        public ActionResult<int> GetCountOfProducts(int id)
+        {
+            var products = _productService.GetCountOfProducts(id);
 
             return Ok(products);
         }

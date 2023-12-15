@@ -13,6 +13,7 @@ import { AddToFavourite } from '../../favourites/models/add-to-favourite.model';
 import { CreateBasketRequest } from '../../basket/models/create-basket.model';
 import { UserService } from '../../user/service/user.service';
 import { LoginService } from '../../login/service/login.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-products',
@@ -30,6 +31,9 @@ export class ProductsComponent implements OnInit {
   addToFavouriteModel: AddToFavourite;
   basket: CreateBasketRequest;
   publicUserId: number;
+  currentPage = 0;
+  pageSize = 2;
+  totalCount: number;
 
   constructor( private route: ActivatedRoute, 
     private categoryService: CategoryService, 
@@ -53,6 +57,8 @@ export class ProductsComponent implements OnInit {
       userId: userService.getUserData().id,
       productId: 0
     }
+
+    this.totalCount = 1;
   }
 
   ngOnInit(): void {
@@ -60,18 +66,26 @@ export class ProductsComponent implements OnInit {
       this.categoryId = +params['id'];
     })
     this.getItems();
+    this.getCount(this.categoryId);
     this.basketService.getBasketStatus().subscribe(status => {
       this.basketStatus = status;
     })
   }
 
   getItems(){
-    this.productService.getProductsByCategory(this.categoryId)
-    .subscribe(products => this.products = products);
+    this.productService.getProductsByCategory(this.categoryId, this.currentPage, this.pageSize)
+    .subscribe((products) => {
+      this.products = products;
+    });
+  }
+
+  getCount(id: number){
+    this.productService.getCount(id).subscribe((response) => {
+      this.totalCount = response;
+    });
   }
 
   basketStatusTrue(productId: number, index: number){
-    debugger;
     this.addItemModel.productId = productId;    
     this.addItemToBasket();
     this.basketService.setBasketStatus(true);
@@ -87,7 +101,6 @@ export class ProductsComponent implements OnInit {
   }
 
   showQuantityForm(index: number): void{
-    debugger;
     this.showForm[index] = true;
   }
 
@@ -96,7 +109,6 @@ export class ProductsComponent implements OnInit {
   }
 
   addToFavourites(productId: number){
-    debugger;
     this.addToFavouriteModel.productId = productId;
     this.favouriteService.addToFavourite(this.addToFavouriteModel).subscribe({
       next: (response) => console.log('Item was added to favourite'),
@@ -104,4 +116,10 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  handlePageEvent(page: PageEvent){
+    debugger;
+    this.currentPage = page.pageIndex;
+    console.log(this.currentPage);
+    this.getItems();
+  }
 }

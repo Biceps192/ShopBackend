@@ -10,5 +10,6 @@ namespace BackendApp.Dto.ProductDto
         public string Description { get; set; }
         public decimal Price { get; set; }
         public int Count { get; set; }
+        public int TotalCount { get; set; }
     }
 }

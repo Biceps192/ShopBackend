@@ -13,8 +13,8 @@ export class ProductService {
 
    }
 
-  getProductsByCategory(id:number): Observable<ProductReadModel[]>{
-    return this.http.get<ProductReadModel[]>(`https://localhost:7093/api/Product/GetByCategory?id=${id}`);
+  getProductsByCategory(id:number, page: number, pageSize: number): Observable<ProductReadModel[]>{
+    return this.http.get<ProductReadModel[]>(`https://localhost:7093/api/Product/GetByCategory?id=${id}&page=${page}&pageSize=${pageSize}`);
   }
 
   getProductsByBasketId(id: number): Observable<ProductsByBasketId[]>{
@@ -27,5 +27,13 @@ export class ProductService {
 
   getProductsBySubcategory(id: number): Observable<ProductReadModel[]>{
     return this.http.get<ProductReadModel[]>(`https://localhost:7093/api/Product/GetProductsBySubcategoryId?subcategoryId=${id}`);
+  }
+
+  getAllProducts(): Observable<ProductReadModel[]>{
+    return this.http.get<ProductReadModel[]>('https://localhost:7093/api/Product');
+  }
+  
+  getCount(id: number): Observable<number>{
+    return this.http.get<number>(`https://localhost:7093/api/Product/GetCountOfProducts?id=${id}`);
   }
 }

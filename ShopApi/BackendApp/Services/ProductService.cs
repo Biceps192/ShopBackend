@@ -2,6 +2,7 @@
 using BackendApp.IRepo;
 using BackendApp.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.Identity.Client;
 
 namespace BackendApp.Services
 {
@@ -11,12 +12,13 @@ namespace BackendApp.Services
         Product GetProductById(int id);
         IEnumerable<Product> GetProducts();
         void CreateProduct(Product product);
-        IEnumerable<Product> GetProductsByCategory(int id);
+        IEnumerable<Product> GetProductsByCategory(int id, int page, int pageSize);
         IEnumerable<ProductByBasketIdDto> GetAllProductsByBasketId(int basketId);
         IEnumerable<Product> GetProductsByIds(List<int> id);
         IEnumerable<Product> GetProductsBySubcategory(int subcategoryId);
         bool AddToFavourite(int userId, int productId);
         IEnumerable<FavouritesByUserIdReadDto> GetFavouritesByUserId(int userId);
+        int GetCountOfProducts(int id);
     }
 
     public class ProductService : IProductService
@@ -44,9 +46,14 @@ namespace BackendApp.Services
             return _productRepo.GetProducts();
         }
 
-        public IEnumerable<Product> GetProductsByCategory(int id)
+        public IEnumerable<Product> GetProductsByCategory(int id, int page, int pageSize)
         {
-            return _productRepo.GetProductsByCategory(id);
+            return _productRepo.GetProductsByCategory(id, page, pageSize);
+        }
+
+        public int GetCountOfProducts(int id)
+        {
+            return _productRepo.GetCountProductsByCategory(id);
         }
 
         public bool SaveChanges()

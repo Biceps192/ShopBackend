@@ -1,7 +1,9 @@
-﻿using BackendApp.Data;
+﻿using AutoMapper;
+using BackendApp.Data;
 using BackendApp.Dto.ProductDto;
 using BackendApp.IRepo;
 using BackendApp.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BackendApp.SqlRepo
 {
@@ -34,13 +36,12 @@ namespace BackendApp.SqlRepo
             return _context.Products.ToList();
         }
 
-        public IEnumerable<Product> GetProductsByCategory(int id)
+        public IEnumerable<Product> GetProductsByCategory(int id, int page, int pageSize)
         {
             var subcategories = _context.Subcategories.Where(x => x.CategoryId == id);
-
             var subcategoriesId = subcategories.Select(x => x.Id);
-
-            return _context.Products.Where(x => subcategoriesId.Contains(x.SubcategoryId)).ToList();
+            var products = _context.Products.Where(x => subcategoriesId.Contains(x.SubcategoryId)).Skip(page * pageSize).Take(pageSize).ToList();
+            return products;
         }
 
         public bool SaveChanges()
@@ -110,6 +111,14 @@ namespace BackendApp.SqlRepo
                 }).ToList();
 
             return favourites;
+        }
+
+        public int GetCountProductsByCategory(int id)
+        {
+            var subcategories = _context.Subcategories.Where(x => x.CategoryId == id);
+            var subcategoriesId = subcategories.Select(x => x.Id);
+            var productsCount = _context.Products.Where(x => subcategoriesId.Contains(x.SubcategoryId)).Count();
+            return productsCount;
         }
     }
 }
